@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { StyleSheet, Text, View } from 'react-native';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -28,10 +30,37 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+      <Stack
+        screenOptions={{
+          title: 'Disglobal',
+          headerStyle: {
+            backgroundColor: '#232B5D',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+
+      >
+        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="+not-found" />
+        <Stack.Screen
+          name="modal"
+          options={{
+            // Set the presentation mode to modal for our modal route.
+            presentation: 'modal',
+          }}
+        />
       </Stack>
     </ThemeProvider>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    marginTop: 50,
+
+  }
+})
