@@ -34,6 +34,7 @@ export default function CardFlatList() {
 const style = StyleSheet.create({
     container: {
         padding: 10,
+        marginBottom: -12
     },
     card: {
         flexDirection: 'column',

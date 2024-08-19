@@ -22,7 +22,6 @@ export interface BottomModalRef {
   close: () => void;
 }
 
-// eslint-disable-next-line react/display-name
 const BottomModal = forwardRef<BottomModalRef, BottomModalProps>(
   ({ children, snapPoint = 600 }, ref) => {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);

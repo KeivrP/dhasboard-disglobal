@@ -1,5 +1,7 @@
+import { backgroundCard } from '@/constants/Colors';
 import React, { type ReactNode } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
+import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 
 export interface ModalSheetProps {
   isVisible: boolean
@@ -23,7 +25,7 @@ export function ModalSheet({
         <View style={verticalAlign}>
           <View style={styles.modalView}>
             <View style={styles.inset}>
-              <ScrollView contentContainerStyle={styles.stack}>{children}</ScrollView>
+              {children}
             </View>
           </View>
         </View>
@@ -40,9 +42,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   modalView: {
-    margin: 20,
-    maxHeight: 400,
-    backgroundColor: 'white',
+    maxHeight: heightPercentageToDP('45%'),
+    width: widthPercentageToDP('95%'),
+    backgroundColor: backgroundCard,
     borderRadius: 20,
     alignItems: 'center',
     shadowColor: '#000',
@@ -66,6 +68,5 @@ const styles = StyleSheet.create({
   },
   stack: {
     flexGrow: 1,
-    justifyContent: 'space-between'
   }
 });

@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import SkeletonCard from "./ui/skeleton/SkeletonCard";
+import { backgroundCard } from "@/constants/Colors";
 
 interface CardProps {
   children: React.ReactNode;
@@ -19,13 +20,15 @@ export const CardCharts = ({
       ) : (
         <View
           style={{
-            margin: 10,
-            padding: 16,
+            marginHorizontal: 15,
+            marginVertical: 10,
+            padding: 10,
+            marginBottom: -1,
             borderRadius: 20,
-            backgroundColor: "#232B5D",
+            backgroundColor: backgroundCard,
           }}
         >
-          <Text style={{ color: "white", fontSize: 17, fontWeight: "bold" }}>
+          <Text style={{ color: "white", fontSize: 17, fontWeight: "bold", marginBottom: 10}}>
             {title}
           </Text>
           {children}

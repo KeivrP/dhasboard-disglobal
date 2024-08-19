@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import {
   Button,
   FlatList,
+  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,32 +11,36 @@ import {
 import BottomModal, { BottomModalRef } from "../BackdropSheet";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import { ModalSheet } from "../ModalSheet";
-import { BarChart } from "react-native-gifted-charts";
-import BarChartNegocio from "./BarChart";
+import BarChartComponents from "./BarChart";
+import { IndicadoresApi, ReportsName, Value } from "./Dashboard-type";
+import { TabBarIcon } from "../navigation/TabBarIcon";
+import { backgroundCard } from "@/constants/Colors";
 
-const data = [
-  "Reporte 1",
-  "Reporte 2",
-  "Reporte 3",
-  "Reporte 4",
-  "Reporte 5",
-  "Reporte 6",
-];
+interface props {
+  data: IndicadoresApi | undefined
+}
 
-export default function ListItem() {
+export default function ListItem({ data }: props) {
   const modalRef = useRef<BottomModalRef>(null);
-  const [type, setType] = useState("");
+  const [item, setItem] = useState<Value>({ value: "", name: "" });
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleClose = () => {
     modalRef.current?.close();
   };
 
-  const HandleReports = (item: string) => {
+  const HandleReports = (item: Value) => {
     setModalVisible(true);
-    setType(item);
+    setItem(item);
     handleClose();
   };
+
+  const handleCloseModal = () => {
+
+    setModalVisible(false);
+  }
+
+
 
   return (
     <View style={styles.container}>
@@ -43,14 +48,14 @@ export default function ListItem() {
         style={styles.button}
         onPress={() => modalRef.current?.open()}
       >
-        <Text style={{ color: "#fff" }}>Seleccionar Reporte</Text>
+        <Text style={{ color: "#fff", fontWeight: 'bold' }}>Seleccionar Reporte</Text>
       </TouchableOpacity>
       <BottomModal snapPoint={400} ref={modalRef}>
         <FlatList
           scrollEnabled={false}
-          data={data}
+          data={ReportsName}
           contentContainerStyle={styles.contentContainer}
-          keyExtractor={(item) => item}
+          //keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
@@ -66,7 +71,7 @@ export default function ListItem() {
                     textTransform: "capitalize",
                   }}
                 >
-                  {item}
+                  {item.name}
                 </Text>
                 <View
                   style={{
@@ -82,9 +87,16 @@ export default function ListItem() {
       </BottomModal>
 
       <ModalSheet isVisible={modalVisible} centerVertical="center">
+        <View style={{
+          justifyContent: 'space-between', flexDirection: "row",
+        }}>
+          <Text style={styles.title}>{item.name}</Text>
+          <Pressable onPress={() => handleCloseModal()}>
+            <TabBarIcon name={'close'} color={'white'} />
+          </Pressable>
+        </View>
         <View>
-          <BarChartNegocio type={type} />
-          <Button title="Cerrar" onPress={() => setModalVisible(false)} />
+          <BarChartComponents type={item} data={data} />
         </View>
       </ModalSheet>
     </View>
@@ -94,10 +106,12 @@ export default function ListItem() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: 15,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
+    textTransform: "capitalize",
+    color: "white",
   },
   contentContainer: {
     alignSelf: "center",
@@ -107,7 +121,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   button: {
-    backgroundColor: "#232B5D",
+    backgroundColor: backgroundCard,
     padding: 10,
     borderRadius: 10,
     marginTop: 10,

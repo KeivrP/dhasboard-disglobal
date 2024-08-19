@@ -1,11 +1,14 @@
-import { getDataRickyAndMortyAPI } from "@/server/APIDasboard";
+import { getIndicadores } from "@/server/APIDasboard";
 import { useQuery } from "@tanstack/react-query";
 
-export const useDataRickyandMorty = () =>
+export const useIndicator = ({ month }: { month: string }) =>
   useQuery({
-    queryKey: ["rycky-and-morty"],
-    queryFn: getDataRickyAndMortyAPI,
+    queryKey: ["indicator"],
+    queryFn: () => getIndicadores({ month }),
   });
+
+
+
 /* 
 const { mutate: resendSignUpCode, isPending: sendingCode } = useMutation({
         mutationFn: resendSignUpCodeAction,

@@ -139,7 +139,7 @@ export default function LineChart() {
         );
     };
     return (
-        <CardCharts title="Line Chart">
+        <CardCharts title="Ventas Diarias ">
             <LineChartComponent
                 thickness={6}
                 color="#07BAD1"

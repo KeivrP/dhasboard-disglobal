@@ -5,6 +5,7 @@
 
 const tintColorLight = '#14314e';
 const tintColorDark = '#e7ba4d';
+export const backgroundCard = '#232B5D';
 
 export const Colors = {
   light: {
