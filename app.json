@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "dashBoardVentas",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash-logo-tentativa.png",
@@ -13,13 +13,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.disglobal.dashboardventas"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/favicon.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "INTERNET",
+        "android.permission.INTERNET"
+      ],
       "package": "com.disglobal.dashboardventas"
     },
     "web": {
@@ -40,6 +45,12 @@
       "eas": {
         "projectId": "c2861489-c45d-46c5-a474-17127536fb36"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c2861489-c45d-46c5-a474-17127536fb36"
     }
   }
 }

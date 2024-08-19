@@ -11,9 +11,9 @@ const data = [
 
 ]
 
-export default function BarChartNegocio() {
+export default function BarChartNegocio({type} : {type: string}) {
     return (
-        <CardCharts title='Modo de negocio'>
+        <CardCharts title={type}>
             <BarChart
                 horizontal
                 disableScroll
